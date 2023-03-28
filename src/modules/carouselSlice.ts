@@ -35,14 +35,32 @@ const BOOKCAROUSELSLICE = createSlice({
     },
     bookDragEnd(state, action) {
       // const diff = state.bookStartX - state.bookCurrentX;
+      console.log(state.bookCurrentX);
 
-      if (state.bookCurrentX > 50) {
-        state.bookCurrentIndex = state.bookCurrentIndex === 0 ? book.length / 3 - 1 : state.bookCurrentIndex - 1;
-      } else if (state.bookCurrentX < -50) {
-        state.bookCurrentIndex = state.bookCurrentIndex === book.length / 3 - 1 ? 0 : state.bookCurrentIndex + 1;
+      if (state.bookCurrentX > -100 && state.bookCurrentX < 100) {
+        console.log("너무 작게 움직여서 아무일도안일어남");
       }
+
+      if (state.bookCurrentX > 150) {
+        console.log(state.bookCurrentX);
+        console.log("150보다 큼");
+        state.bookCurrentIndex = state.bookCurrentIndex - 1;
+      }
+
+      if (state.bookCurrentX < -150) {
+        console.log(state.bookCurrentX);
+        console.log("150보다 작음");
+
+        state.bookCurrentIndex = state.bookCurrentIndex + 1;
+      }
+
       state.bookStartX = 0;
       state.bookCurrentX = 0;
+      // if (state.bookCurrentX > 50) {
+      //   state.bookCurrentIndex = state.bookCurrentIndex === 0 ? book.length / 3 - 1 : state.bookCurrentIndex - 1;
+      // } else if (state.bookCurrentX < -50) {
+      //   state.bookCurrentIndex = state.bookCurrentIndex === book.length / 3 - 1 ? 0 : state.bookCurrentIndex + 1;
+      // }
     },
   },
 });

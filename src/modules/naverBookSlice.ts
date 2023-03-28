@@ -6,7 +6,7 @@ export interface BookInitialState {
   books: any[];
   loading: boolean;
   error: boolean | string;
-  maxPage: boolean;
+  maxPage: number;
 }
 
 interface FulfilledPayload {
@@ -21,7 +21,7 @@ const initialState: BookInitialState = {
   books: [],
   loading: true,
   error: false,
-  maxPage: false,
+  maxPage: 0,
 };
 
 const naverBookSlice = createSlice({
@@ -29,30 +29,25 @@ const naverBookSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getNaverBook.pending, (state) => {
+    builder.addCase(getNaverBook.pending, (state, actions: PayloadAction<any>) => {
+      console.log(actions);
       console.log("로딩중");
       state.loading = true;
       state.error = false;
     });
-    builder.addCase(
-      getNaverBook.fulfilled,
-      (state, actions: PayloadAction<FulfilledPayload>) => {
-        console.log("성공");
-        let result = actions.payload;
-        console.log(result);
-        state.loading = false;
-        state.books = [...state.books, ...result.items];
-      }
-    );
+    builder.addCase(getNaverBook.fulfilled, (state, actions: PayloadAction<FulfilledPayload>) => {
+      console.log("성공");
+      let result = actions.payload;
+      state.loading = false;
+      state.books = [...state.books, ...result.items];
+      state.maxPage = actions.payload.total;
+    });
 
-    builder.addCase(
-      getNaverBook.rejected,
-      (state, actions: PayloadAction<any>) => {
-        console.log(actions, "오류");
-        state.error = actions.payload.errorMessage.errorMessage;
-        state.loading = false;
-      }
-    );
+    builder.addCase(getNaverBook.rejected, (state, actions: PayloadAction<any>) => {
+      console.log(actions, "오류");
+      state.error = actions.payload.errorMessage.errorMessage;
+      state.loading = false;
+    });
   },
 });
 export default naverBookSlice.reducer;
