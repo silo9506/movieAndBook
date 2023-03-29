@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getNaverBook } from "./thunk/naver";
 import {} from "./thunk/naver";
 
-export interface BookInitialState {
+interface BookInitialState {
   books: any[];
   loading: boolean;
   error: boolean | string;
@@ -51,4 +51,3 @@ const naverBookSlice = createSlice({
   },
 });
 export default naverBookSlice.reducer;
-export const animalAction = naverBookSlice.actions;

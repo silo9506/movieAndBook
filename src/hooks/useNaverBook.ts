@@ -7,7 +7,7 @@ import axios, { CancelTokenSource } from "axios";
 type NaverBookResult = [any[], boolean, string | boolean, number];
 const useNaverBook = (query = "드래곤볼", start: number): NaverBookResult => {
   const { books, loading, error, maxPage } = useSelector((state: RootState) => state.naverBookSlice);
-
+  console.log("책정보 가져오기");
   const dispatch = useDispatch<typeof isAsyncThunkAction>();
 
   useEffect(() => {

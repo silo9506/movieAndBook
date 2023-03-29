@@ -1,13 +1,15 @@
 import { Container, Grid } from "@mui/material";
-import Book from "components/atoms/Book";
+import BookCard from "components/atoms/BookCard";
 import useNaverBook from "hooks/useNaverBook";
-import { useState, useRef, useCallback, ReactNode } from "react";
-export default function BookLayout() {
+import { useState, useRef, useCallback, useEffect } from "react";
+export default function BookPage() {
   const [query, setQuery] = useState();
   const [start, setStart] = useState(1);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
   const [books, loading, error, maxPage] = useNaverBook(query, start);
   const observer = useRef<IntersectionObserver>();
+
+  console.log("북페이지 랜더?");
   const lastBook = useCallback(
     (node: any) => {
       if (loading) return;
@@ -29,6 +31,7 @@ export default function BookLayout() {
     [loading, maxPage]
   );
   console.log(books);
+
   return (
     <Container>
       <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }} rowSpacing={5}>
@@ -36,7 +39,8 @@ export default function BookLayout() {
           if (books.length === index + 1) {
             return (
               <Grid ref={lastBook} xs={12} sm={6} md={4} key={items.isbn} item>
-                <Book
+                <BookCard
+                  discount={items.discount}
                   image={items.image}
                   isbn={items.isbn}
                   description={items.description}
@@ -49,7 +53,8 @@ export default function BookLayout() {
           } else {
             return (
               <Grid xs={12} sm={6} md={4} key={items.isbn} item>
-                <Book
+                <BookCard
+                  discount={items.discount}
                   image={items.image}
                   isbn={items.isbn}
                   description={items.description}

@@ -20,8 +20,8 @@ interface params {
 
 const axiosInstance = axios.create({
   headers: {
-    "X-Naver-Client-Id": "XRupn7GoMOzhZZQE_RD6",
-    "X-Naver-Client-Secret": "FxfJq0rU7f",
+    "X-Naver-Client-Id": process.env.REACT_APP_NAVER_CLIENT_ID,
+    "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_CLIENT_SECRET,
   },
   method: "get",
   baseURL: "https://silo9506-proxy.herokuapp.com/https://openapi.naver.com/v1/search",
