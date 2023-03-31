@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 });
 
 export const getTmdb = createAsyncThunk<any, any, { rejectValue: MyKnownError }>(
-  "getNaverBook",
+  "getTmdb",
   async (_, { rejectWithValue }) => {
     try {
       const response: AxiosResponse = await axiosInstance({

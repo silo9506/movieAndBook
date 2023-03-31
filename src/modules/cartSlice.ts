@@ -15,7 +15,18 @@ const initialState: initialState = {
   item: [],
 };
 
-const cartSlice = createSlice({ name: "cartSlice", initialState, reducers: {} });
+const cartSlice = createSlice({
+  name: "cartSlice",
+  initialState,
+  reducers: {
+    cartOpen(state) {
+      state.isOpen = true;
+    },
+    cartClose(state) {
+      state.isOpen = false;
+    },
+  },
+});
 
 export default cartSlice.reducer;
 export const cartSliceAction = cartSlice.actions;

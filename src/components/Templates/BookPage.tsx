@@ -6,10 +6,9 @@ export default function BookPage() {
   const [query, setQuery] = useState();
   const [start, setStart] = useState(1);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
-  const [books, loading, error, maxPage] = useNaverBook(query, start);
+  const [books, loading, error, maxPage] = useNaverBook({ query, start });
   const observer = useRef<IntersectionObserver>();
 
-  console.log("북페이지 랜더?");
   const lastBook = useCallback(
     (node: any) => {
       if (loading) return;

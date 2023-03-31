@@ -39,7 +39,10 @@ const naverBookSlice = createSlice({
       console.log("성공");
       let result = actions.payload;
       state.loading = false;
-      state.books = [...state.books, ...result.items];
+      const newBooks = result.items.filter((item) => !state.books.some((book) => book.isbn === item.isbn));
+      console.log(newBooks);
+      state.books = [...state.books, ...newBooks];
+      // state.books = [...state.books, ...result.items];
       state.maxPage = actions.payload.total;
     });
 

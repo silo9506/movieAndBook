@@ -94,7 +94,9 @@ const Home = () => {
         </Box>
       </Box>
       <SkewBox skew={1} gradient="linear-gradient(45deg, #654ea3, #eaafc8)">
-        <Typography variant="h2">Movie</Typography>
+        <Typography component={"a"} sx={{ textDecoration: "unset", color: "white" }} href="/search/movie" variant="h2">
+          Movie
+        </Typography>
         <Carousel
           index={movieCurrentIndex}
           items={movie}
@@ -106,7 +108,9 @@ const Home = () => {
         />
       </SkewBox>
       <SkewBox skew={1} gradient="linear-gradient(-135deg, #ff0084, #33001b)">
-        <Typography variant="h2">Book</Typography>
+        <Typography component={"a"} sx={{ textDecoration: "unset", color: "white" }} href="/search/books" variant="h2">
+          Book
+        </Typography>
         <Carousel
           index={bookCurrentIndex}
           items={book}

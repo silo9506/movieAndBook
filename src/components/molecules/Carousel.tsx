@@ -70,7 +70,6 @@ const Container = styled(Box)(
   margin: 0 auto;
   position: relative;
   background-color:#003;
-
 `
 );
 
@@ -86,8 +85,3 @@ transform:translateX(calc(-${(index + max) * 20}% + ${currentx}px));
 user-select:none
 `
 );
-
-// transform: translateX(calc(5px + 20px);
-// transform: translateX(calc(${currentindex + max} * 100% + ${transx})px);
-// transform:translateX(-${currentindex + transx}px);
-// transform:translateX(${-currentIndex * 100}%);
