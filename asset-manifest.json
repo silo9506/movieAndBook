@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.js": "/silo9506/movieAndBook/static/js/main.16f980a8.js",
+    "static/media/MSample07.jpg": "/silo9506/movieAndBook/static/media/MSample07.25ac454a3cd528e6b17e.jpg",
+    "static/media/MSample06.jpg": "/silo9506/movieAndBook/static/media/MSample06.3ce74d6ac77d23d29655.jpg",
+    "static/media/BSample02.jpg": "/silo9506/movieAndBook/static/media/BSample02.fca736421151e70ac21c.jpg",
+    "static/media/BSample01.jpg": "/silo9506/movieAndBook/static/media/BSample01.852dd251697d334c6bbc.jpg",
+    "static/media/MSample01.jpg": "/silo9506/movieAndBook/static/media/MSample01.b1a1dbed8afe42d81ebf.jpg",
+    "static/media/MSample03.jpg": "/silo9506/movieAndBook/static/media/MSample03.e239ab6eae4ec3a68aa7.jpg",
+    "static/media/MSample04.jpg": "/silo9506/movieAndBook/static/media/MSample04.8eb54f07ecf8cafc6f0a.jpg",
+    "static/media/MSample09.jpg": "/silo9506/movieAndBook/static/media/MSample09.ba3007dfdd8d26344ef7.jpg",
+    "static/media/MSample02.jpg": "/silo9506/movieAndBook/static/media/MSample02.22c93deddf0275dc915f.jpg",
+    "static/media/MSample10.jpg": "/silo9506/movieAndBook/static/media/MSample10.e9bfe284a227cdf882d0.jpg",
+    "static/media/MSample08.jpg": "/silo9506/movieAndBook/static/media/MSample08.d3733dc9f33550e72c99.jpg",
+    "static/media/noposter.png": "/silo9506/movieAndBook/static/media/noposter.eeffb5c637ddd274995b.png",
+    "static/media/BSample03.jpg": "/silo9506/movieAndBook/static/media/BSample03.d093dfa127b394b6b5ba.jpg",
+    "static/media/BSample04.jpg": "/silo9506/movieAndBook/static/media/BSample04.9d1f673b1eb2de346d82.jpg",
+    "static/media/BSample05.jpg": "/silo9506/movieAndBook/static/media/BSample05.88f72f94890b320c070e.jpg",
+    "static/media/MSample05.jpg": "/silo9506/movieAndBook/static/media/MSample05.19756829d6c5cbe9f184.jpg",
+    "static/media/BSample08.jpg": "/silo9506/movieAndBook/static/media/BSample08.3b42f980ffc4500231df.jpg",
+    "static/media/Logo.png": "/silo9506/movieAndBook/static/media/Logo.00509dfee0feafef0f60.png",
+    "static/media/BSample10.jpg": "/silo9506/movieAndBook/static/media/BSample10.641a4e8f9d06c2eece46.jpg",
+    "static/media/miniLogo.png": "/silo9506/movieAndBook/static/media/miniLogo.9c74da4c199a7021fb0c.png",
+    "static/media/BSample06.jpg": "/silo9506/movieAndBook/static/media/BSample06.f7f4a51b81bf7007e9a8.jpg",
+    "static/media/BSample09.jpg": "/silo9506/movieAndBook/static/media/BSample09.72eb8e187832515b53f0.jpg",
+    "static/media/BSample07.jpg": "/silo9506/movieAndBook/static/media/BSample07.2e4b032e65365380894e.jpg",
+    "index.html": "/silo9506/movieAndBook/index.html",
+    "main.16f980a8.js.map": "/silo9506/movieAndBook/static/js/main.16f980a8.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.16f980a8.js"
+  ]
+}
