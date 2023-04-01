@@ -2,7 +2,7 @@ import { Container, AppBar, Toolbar, Tabs, Tab, IconButton, InputBase, alpha, Bu
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link, Link as RouterLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { Action, Dispatch, ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
@@ -14,15 +14,34 @@ import useNaverBook from "hooks/useNaverBook";
 type NavbarProps = {
   params?: string;
   cartOpen: ActionCreatorWithoutPayload;
+  bookQueryChange: (newQuery: string) => void;
+  bookStartChange: () => void;
+  moviePageChange: () => void;
+  movieQueryChange: (newQuery: string) => void;
 };
-const Navbar = ({ params, cartOpen }: NavbarProps) => {
-  const [value, setValue] = useState(1);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+const Navbar = ({
+  params,
+  cartOpen,
+  bookQueryChange,
+  bookStartChange,
+  moviePageChange,
+  movieQueryChange,
+}: NavbarProps) => {
   const dispatch = useDispatch();
+  const [query, setQuery] = useState("");
   const onClickCart = () => {
     dispatch(cartOpen());
+  };
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (params === "books") {
+      bookQueryChange(query);
+      bookStartChange();
+    } else {
+      movieQueryChange(query);
+      moviePageChange();
+    }
   };
 
   return (
@@ -35,8 +54,7 @@ const Navbar = ({ params, cartOpen }: NavbarProps) => {
             </Link>
             {params === "books" ? (
               <Tabs
-                value={value}
-                onChange={handleChange}
+                value={1}
                 sx={{
                   flex: 1,
                   ".MuiTabs-indicator": {
@@ -49,8 +67,7 @@ const Navbar = ({ params, cartOpen }: NavbarProps) => {
               </Tabs>
             ) : (
               <Tabs
-                value={value}
-                onChange={handleChange}
+                value={1}
                 sx={{
                   flex: 1,
                   ".MuiTabs-indicator": {
@@ -63,8 +80,13 @@ const Navbar = ({ params, cartOpen }: NavbarProps) => {
               </Tabs>
             )}
             {/*  */}
-            <Search component={"form"}>
-              <StyledInputBase placeholder="작품명을 입력 해주세요 " required></StyledInputBase>
+            <Search onSubmit={(e) => onSubmit(e)} component={"form"}>
+              <StyledInputBase
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+                placeholder="작품명을 입력 해주세요"
+                required
+              ></StyledInputBase>
               <StyledSearchButton type="submit">
                 <SearchIcon />
               </StyledSearchButton>
