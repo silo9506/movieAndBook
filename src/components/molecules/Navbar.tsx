@@ -62,8 +62,8 @@ const Navbar = ({
                   },
                 }}
               >
-                <Tab component={RouterLink} to="/search/books" label="Books" disabled />
-                <Tab component={RouterLink} to="/search/movies" label="Movie" />
+                <Tab component={RouterLink} to="/books" label="Books" disabled />
+                <Tab component={RouterLink} to="/movies" label="Movie" />
               </Tabs>
             ) : (
               <Tabs
@@ -75,8 +75,8 @@ const Navbar = ({
                   },
                 }}
               >
-                <Tab component={RouterLink} to="/search/movies" label="Movie" disabled />
-                <Tab component={RouterLink} to="/search/books" label="Books" />
+                <Tab component={RouterLink} to="/movies" label="Movie" disabled />
+                <Tab component={RouterLink} to="/books" label="Books" />
               </Tabs>
             )}
             {/*  */}

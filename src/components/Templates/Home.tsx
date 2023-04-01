@@ -6,6 +6,7 @@ import Carousel from "components/molecules/Carousel";
 import { RootState } from "modules/store";
 import { useSelector } from "react-redux";
 import { bookCarouselSliceAction, movieCarouselSliceAction } from "modules/carouselSlice";
+import { Link } from "react-router-dom";
 
 // interface Props {
 //   children: React.ReactElement;
@@ -94,7 +95,7 @@ const Home = () => {
         </Box>
       </Box>
       <SkewBox skew={1} gradient="linear-gradient(45deg, #654ea3, #eaafc8)">
-        <Typography component={"a"} sx={{ textDecoration: "unset", color: "white" }} href="/search/movie" variant="h2">
+        <Typography component={Link} sx={{ textDecoration: "unset", color: "white" }} to={"/movies"} variant="h2">
           Movie
         </Typography>
         <Carousel
@@ -108,7 +109,7 @@ const Home = () => {
         />
       </SkewBox>
       <SkewBox skew={1} gradient="linear-gradient(-135deg, #ff0084, #33001b)">
-        <Typography component={"a"} sx={{ textDecoration: "unset", color: "white" }} href="/search/books" variant="h2">
+        <Typography component={Link} sx={{ textDecoration: "unset", color: "white" }} to={"/books"} variant="h2">
           Book
         </Typography>
         <Carousel
