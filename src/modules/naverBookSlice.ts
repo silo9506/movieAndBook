@@ -9,6 +9,7 @@ interface BookInitialState {
   maxPage: number;
   query: string;
   start: number;
+  isLastPage: boolean;
 }
 
 interface FulfilledPayload {
@@ -26,6 +27,7 @@ const initialState: BookInitialState = {
   maxPage: 0,
   query: "",
   start: 1,
+  isLastPage: false,
 };
 
 const naverBookSlice = createSlice({
@@ -40,6 +42,9 @@ const naverBookSlice = createSlice({
     changeStart(state, action) {
       console.log(action.payload);
       state.start = action.payload;
+    },
+    setLastPage(state, action) {
+      state.isLastPage = action.payload;
     },
   },
   extraReducers: (builder) => {

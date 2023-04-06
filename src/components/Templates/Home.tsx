@@ -1,65 +1,15 @@
-import { Box, AppBar, Toolbar, Typography, useScrollTrigger } from "@mui/material";
-import SkewBox from "components/atoms/SkewBox";
-import { cloneElement } from "react";
+import { Box, Typography } from "@mui/material";
+import SkewBox from "components/molecules/SkewBox";
 import Logo from "assets/img/Logo.png";
 import Carousel from "components/molecules/Carousel";
-import { RootState } from "modules/store";
-import { useSelector } from "react-redux";
-import { bookCarouselSliceAction, movieCarouselSliceAction } from "modules/carouselSlice";
 import { Link } from "react-router-dom";
-
-// interface Props {
-//   children: React.ReactElement;
-// }
-
-// function ElevationScroll(props: Props) {
-//   const { children } = props;
-//   const trigger = useScrollTrigger({
-//     disableHysteresis: true,
-//     threshold: 0,
-//   });
-
-//   return cloneElement(children, {
-//     elevation: trigger ? 4 : 0,
-//   });
-// }
+import { samples } from "data/samples";
 
 const Home = () => {
-  const { movie, movieStartX, movieCurrentX, movieCurrentIndex } = useSelector(
-    (state: RootState) => state.movieCarouselSlice
-  );
-  const { book, bookStartX, bookCurrentX, bookCurrentIndex } = useSelector(
-    (state: RootState) => state.bookCarouselSlice
-  );
-
-  const { movieDragStart, movieDrag, movieDragEnd } = movieCarouselSliceAction;
-  const { bookDragStart, bookDrag, bookDragEnd } = bookCarouselSliceAction;
+  const { books, movies } = samples;
 
   return (
     <Box sx={{ backgroundColor: "#003", color: "white" }}>
-      {/*  */}
-      {/* <ElevationScroll>
-        <AppBar>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignContent: "center",
-              flexDirection: "column",
-              backgroundColor: "#CBD7E2",
-              color: "black",
-            }}
-          >
-            <Typography variant="h6" component="span">
-              M&B
-            </Typography>
-            <Typography variant="button" component="span">
-              영화와 책
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar /> */}
-      {/*  */}
       <Box
         sx={{
           marginBottom: "calc((var(--skewend-padding) * -1) - 2px)",
@@ -95,32 +45,66 @@ const Home = () => {
         </Box>
       </Box>
       <SkewBox skew={1} gradient="linear-gradient(45deg, #654ea3, #eaafc8)">
-        <Typography component={Link} sx={{ textDecoration: "unset", color: "white" }} to={"/movies"} variant="h2">
-          Movie
-        </Typography>
-        <Carousel
-          index={movieCurrentIndex}
-          items={movie}
-          startX={movieStartX}
-          currentX={movieCurrentX}
-          dragStart={movieDragStart}
-          dragEnd={movieDragEnd}
-          drag={movieDrag}
-        />
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            component={Link}
+            sx={{
+              textDecoration: "unset",
+              background: "linear-gradient(to right, #fff 50%,#f56465 50%)",
+              backgroundSize: "200%",
+              transition: "ease-in-out 0.5s",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              "&:hover": { backgroundPosition: "-100%" },
+            }}
+            to={"/movies"}
+            variant="h2"
+          >
+            Movie
+          </Typography>
+          <Carousel items={movies} />
+        </Box>
+        <Box sx={{ marginTop: "8px", display: "flex", justifyContent: "flex-end" }}>
+          <Typography
+            component={Link}
+            to={"/movies"}
+            sx={{ textDecoration: "unset", color: "#0f0042", marginTop: "8px", fontWeight: "bold" }}
+            variant="h5"
+          >
+            영화검색으로 이동
+          </Typography>
+        </Box>
       </SkewBox>
       <SkewBox skew={1} gradient="linear-gradient(-135deg, #ff0084, #33001b)">
-        <Typography component={Link} sx={{ textDecoration: "unset", color: "white" }} to={"/books"} variant="h2">
-          Book
-        </Typography>
-        <Carousel
-          index={bookCurrentIndex}
-          items={book}
-          startX={bookStartX}
-          currentX={bookCurrentX}
-          dragStart={bookDragStart}
-          dragEnd={bookDragEnd}
-          drag={bookDrag}
-        />
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            component={Link}
+            sx={{
+              textDecoration: "unset",
+              background: "linear-gradient(to right, #fff 50%,#f56465 50%)",
+              backgroundSize: "200%",
+              transition: "ease-in-out 0.5s",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              "&:hover": { backgroundPosition: "-100%" },
+            }}
+            to={"/books"}
+            variant="h2"
+          >
+            Book
+          </Typography>
+          <Carousel items={books} />
+        </Box>
+        <Box sx={{ marginTop: "8px", display: "flex", justifyContent: "flex-end" }}>
+          <Typography
+            component={Link}
+            sx={{ textDecoration: "unset", color: "#0f0042", fontWeight: "bold" }}
+            variant="h5"
+            to={"/books"}
+          >
+            도서검색으로 이동
+          </Typography>
+        </Box>
       </SkewBox>
       <SkewBox color="black" end={1} gradient="linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%">
         <></>

@@ -5,16 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules/store";
 import axios, { CancelTokenSource } from "axios";
 
-type NaverBookResult = [any[], boolean, string | boolean, number, number];
-// type useNaverBookProps = {
-//   // start?: number;
-//   // query?: string;
-// };
+type NaverBookResult = [any[], boolean, string | boolean, number, number, boolean];
 
 const useNaverBook = (): NaverBookResult => {
-  const { query, start, books, loading, error, maxPage } = useSelector((state: RootState) => state.naverBookSlice);
-  console.log("책정보 가져오기");
-  console.log(query);
+  const { query, start, books, loading, error, maxPage, isLastPage } = useSelector(
+    (state: RootState) => state.naverBookSlice
+  );
+
   const dispatch = useDispatch<typeof isAsyncThunkAction>();
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const useNaverBook = (): NaverBookResult => {
     };
   }, [query, start, dispatch]);
 
-  return [books, loading, error, maxPage, start];
+  return [books, loading, error, maxPage, start, isLastPage];
 };
 
 export default useNaverBook;

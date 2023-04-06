@@ -1,28 +1,33 @@
 import { ReactNode } from "react";
-import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider as Provider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 import GlobalStyle from "styles/GlobalStyle";
-
+import { createTheme, ThemeProvider as Provider } from "@mui/material/styles";
+import { ThemeProvider as EmotionProvider } from "@emotion/react";
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const { darkTheme } = useSelector((state: any) => state.themeSlice);
+  const { darkmode } = useSelector((state: any) => state.themeSlice);
+
   const theme = createTheme({
     palette: {
-      mode: darkTheme ? "dark" : "light",
+      mode: darkmode ? "dark" : "light",
+      primary: {
+        main: "#003",
+      },
     },
   });
 
   return (
-    <StyledEngineProvider injectFirst>
-      <Provider theme={theme}>
-        <GlobalStyle />
+    <Provider theme={theme}>
+      <EmotionProvider theme={theme}>
         <CssBaseline />
+        <GlobalStyle />
         {children}
-      </Provider>
-    </StyledEngineProvider>
+      </EmotionProvider>
+    </Provider>
   );
 };
 

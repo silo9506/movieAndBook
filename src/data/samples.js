@@ -19,8 +19,8 @@ import MSample08 from "assets/img/MSample08.jpg";
 import MSample09 from "assets/img/MSample09.jpg";
 import MSample10 from "assets/img/MSample10.jpg";
 
-export const carouselItems = {
-  book: [
+export const samples = {
+  books: [
     { name: "안나 카레니나", url: BSample01 },
     { name: "명상록", url: BSample02 },
     { name: "제임스와 슈퍼 복숭아", url: BSample03 },
@@ -32,7 +32,7 @@ export const carouselItems = {
     { name: "알퐁스 도데 단편선", url: BSample09 },
     { name: "오스카 와일드 작품선", url: BSample10 },
   ],
-  movie: [
+  movies: [
     { name: "레퀴엠 포 어 드림", url: MSample01 },
     { name: "비디오드롬", url: MSample02 },
     { name: "퍼니 게임", url: MSample03 },
