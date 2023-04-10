@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 
 type CarouselProps = {
   items: { name: string; url: string }[];
@@ -11,7 +11,7 @@ export default function Carousel({ items }: CarouselProps) {
   const [onDrag, setOnDrag] = useState(false);
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(10);
-
+  const theme = useTheme();
   const handleDragStart = (e: React.MouseEvent) => {
     setOnDrag(true);
     setStartX(e.pageX);
@@ -63,7 +63,15 @@ export default function Carousel({ items }: CarouselProps) {
           >
             <img draggable={false} style={{ width: "100%", height: "100%" }} src={item.url}></img>
             <Typography
-              sx={{ textAlign: "center", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  fontSize: "5px",
+                },
+                textAlign: "center",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              })}
             >
               {item.name}
             </Typography>

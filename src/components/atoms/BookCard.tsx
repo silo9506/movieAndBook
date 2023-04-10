@@ -66,11 +66,11 @@ export default function BookCard({ image, publisher, description, author, isbn, 
         >
           {description}
         </Typography>
-        <Box sx={{ position: "absolute", bottom: 0, right: 0 }}>
+        {/* <Box sx={{ position: "absolute", bottom: 0, right: 0 }}>
           <IconButton>
             <FavoriteIcon />
           </IconButton>
-        </Box>
+        </Box> */}
       </CardContent>
     </Card>
   );

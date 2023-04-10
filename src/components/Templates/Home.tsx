@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import SkewBox from "components/molecules/SkewBox";
 import Logo from "assets/img/Logo.png";
 import Carousel from "components/molecules/Carousel";
@@ -7,6 +7,7 @@ import { samples } from "data/samples";
 
 const Home = () => {
   const { books, movies } = samples;
+  const theme = useTheme();
 
   return (
     <Box sx={{ backgroundColor: "#003", color: "white" }}>
@@ -18,10 +19,13 @@ const Home = () => {
         }}
       >
         <Box sx={{ maxWidth: "50vw", margin: "0 auto", wordBreak: "keep-all", textAlign: "center" }}>
-          <img height={150} src={Logo}></img>
+          <img height={125} style={{ width: "50%" }} src={Logo}></img>
         </Box>
         <Box
-          sx={{
+          sx={(theme) => ({
+            [theme.breakpoints.down("md")]: {
+              maxWidth: "90vw",
+            },
             textAlign: "center",
             background: "#fff",
             color: "#003",
@@ -30,9 +34,23 @@ const Home = () => {
             margin: "0 auto",
             maxWidth: "50vw",
             wordBreak: "keep-all",
-          }}
+          })}
         >
-          <Typography variant="h6" sx={{ paddingY: "20px", paddingLeft: "8px", fontWeight: "inherit" }}>
+          <Typography
+            variant="h6"
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                fontSize: "16px",
+              },
+              [theme.breakpoints.down("sm")]: {
+                fontSize: "13px",
+              },
+              fontSize: "20px",
+              paddingY: "20px",
+              paddingLeft: "8px",
+              fontWeight: "inherit",
+            })}
+          >
             지금은 영상예술인 영화와 활자예술인 문학이 과거 그 어느 때보다도 더 밀접한 연관을 맺고 서로의 가능성을
             탐색하고 있는 시대이다. 물론 그 두 쟝르가 하나로 합쳐질 수는 없을 것이다. 그러나 모든 것이 화면으로 이해되고
             처리되는 이 영상시대에 살아 남기 위해서는 활자문화 역시 혁명적인 변화를 겪지 않을 수 없을 것이다. 다만
@@ -48,7 +66,10 @@ const Home = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography
             component={Link}
-            sx={{
+            sx={(theme) => ({
+              [theme.breakpoints.down("sm")]: {
+                fontSize: "16px",
+              },
               textDecoration: "unset",
               background: "linear-gradient(to right, #fff 50%,#f56465 50%)",
               backgroundSize: "200%",
@@ -56,7 +77,7 @@ const Home = () => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               "&:hover": { backgroundPosition: "-100%" },
-            }}
+            })}
             to={"/movies"}
             variant="h2"
           >
@@ -68,7 +89,16 @@ const Home = () => {
           <Typography
             component={Link}
             to={"/movies"}
-            sx={{ textDecoration: "unset", color: "#0f0042", marginTop: "8px", fontWeight: "bold" }}
+            sx={(theme) => ({
+              [theme.breakpoints.down("sm")]: {
+                fontSize: "14px",
+              },
+              textDecoration: "unset",
+              color: "#0f0042",
+              marginTop: "8px",
+              fontWeight: "bold",
+              fontSize: "20px",
+            })}
             variant="h5"
           >
             영화검색으로 이동
@@ -79,7 +109,10 @@ const Home = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography
             component={Link}
-            sx={{
+            sx={(theme) => ({
+              [theme.breakpoints.down("sm")]: {
+                fontSize: "16px",
+              },
               textDecoration: "unset",
               background: "linear-gradient(to right, #fff 50%,#f56465 50%)",
               backgroundSize: "200%",
@@ -87,7 +120,7 @@ const Home = () => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               "&:hover": { backgroundPosition: "-100%" },
-            }}
+            })}
             to={"/books"}
             variant="h2"
           >
@@ -98,7 +131,16 @@ const Home = () => {
         <Box sx={{ marginTop: "8px", display: "flex", justifyContent: "flex-end" }}>
           <Typography
             component={Link}
-            sx={{ textDecoration: "unset", color: "#0f0042", fontWeight: "bold" }}
+            sx={(theme) => ({
+              [theme.breakpoints.down("sm")]: {
+                fontSize: "14px",
+              },
+              textDecoration: "unset",
+              color: "#0f0042",
+              marginTop: "8px",
+              fontWeight: "bold",
+              fontSize: "20px",
+            })}
             variant="h5"
             to={"/books"}
           >
