@@ -12,14 +12,15 @@ export default function Carousel({ items }: CarouselProps) {
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(10);
   const theme = useTheme();
-  const handleDragStart = (e: React.MouseEvent) => {
+  const handleDragStart = (e: React.TouchEvent | React.MouseEvent) => {
     setOnDrag(true);
-    setStartX(e.pageX);
+    setStartX("touches" in e ? e.touches[0].pageX : e.pageX);
   };
 
-  const handleDrag = (e: React.MouseEvent) => {
+  const handleDrag = (e: React.TouchEvent | React.MouseEvent) => {
     if (onDrag) {
-      const transX = translateX + (e.pageX - startX) / 100;
+      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
+      const transX = translateX + (pageX - startX) / 10;
       setTranslateX(() => {
         if (transX < -10) {
           return -10;
@@ -29,10 +30,11 @@ export default function Carousel({ items }: CarouselProps) {
         }
         return transX;
       });
+      setStartX(pageX);
     }
   };
 
-  const handleDragEnd = (e: React.MouseEvent) => {
+  const handleDragEnd = (e: React.TouchEvent | React.MouseEvent) => {
     if (onDrag) {
       setOnDrag(false);
       setTranslateX((prev) => {
@@ -51,9 +53,13 @@ export default function Carousel({ items }: CarouselProps) {
     <Container>
       <Wrapper
         onMouseDown={handleDragStart}
+        onTouchStart={handleDragStart}
         onMouseMove={handleDrag}
+        onTouchMove={handleDrag}
         onMouseUp={handleDragEnd}
+        onTouchEnd={handleDragEnd}
         onMouseLeave={handleDragEnd}
+        onTouchCancel={handleDragEnd}
         translatex={translateX}
       >
         {items.map((item, index) => (
