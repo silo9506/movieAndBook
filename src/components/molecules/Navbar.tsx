@@ -28,6 +28,8 @@ type NavbarProps = {
   bookStartChange: () => void;
   moviePageChange: () => void;
   movieQueryChange: (newQuery: string) => void;
+  movieQuery: string;
+  bookQuery: string;
 };
 const Navbar = ({
   params,
@@ -36,6 +38,8 @@ const Navbar = ({
   bookStartChange,
   moviePageChange,
   movieQueryChange,
+  movieQuery,
+  bookQuery,
 }: NavbarProps) => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
@@ -46,9 +50,11 @@ const Navbar = ({
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (params === "books") {
+      if (bookQuery === query) return;
       bookQueryChange(query);
       bookStartChange();
     } else {
+      if (movieQuery === query) return;
       movieQueryChange(query);
       moviePageChange();
     }
@@ -64,90 +70,12 @@ const Navbar = ({
             <img src={Logo} style={{ height: "2rem", width: "100%" }}></img>
           </Link>
           <ToggleButtonGroup sx={{ flex: "1" }} size="small" color="primary" value={params} exclusive>
-            <ToggleButton
-              sx={{
-                border: "none",
-                position: "relative",
-                transition: "0.5s",
-                "&::after": {
-                  position: "absolute",
-                  content: "''",
-                  bottom: "7px",
-                  left: "10%",
-                  width: "80%",
-                  height: "3px",
-                  background: "#3498db",
-                  transform: "scaleX(0)",
-                  transformOrigin: "right",
-                  transition: "transform 0.5s",
-                },
-                "&:hover::after": {
-                  transform: "scaleX(1)",
-                  transformOrigin: "left",
-                },
-                "&:hover": { backgroundColor: "unset" },
-                "&.Mui-selected": { backgroundColor: "unset" },
-                "&.Mui-selected::after": {
-                  position: "absolute",
-                  content: "''",
-                  bottom: "7px",
-                  left: "10%",
-                  width: "80%",
-                  height: "3px",
-                  background: "#3498db",
-                  transform: "scaleX(1)",
-                  transformOrigin: "right",
-                  transition: "transform 0.5s",
-                },
-                "&.Mui-selected:hover": { backgroundColor: "unset" },
-              }}
-              onClick={() => navigate("/movies")}
-              value="movies"
-            >
+            <StyledToggleButton onClick={() => navigate("/movies")} value="movies">
               Movies
-            </ToggleButton>
-            <ToggleButton
-              sx={{
-                border: "none",
-                position: "relative",
-                transition: "0.5s",
-                "&::after": {
-                  position: "absolute",
-                  content: "''",
-                  bottom: "7px",
-                  left: "10%",
-                  width: "80%",
-                  height: "3px",
-                  background: "#3498db",
-                  transform: "scaleX(0)",
-                  transformOrigin: "right",
-                  transition: "transform 0.5s",
-                },
-                "&:hover::after": {
-                  transform: "scaleX(1)",
-                  transformOrigin: "left",
-                },
-                "&:hover": { backgroundColor: "unset" },
-                "&.Mui-selected": { backgroundColor: "unset" },
-                "&.Mui-selected::after": {
-                  position: "absolute",
-                  content: "''",
-                  bottom: "7px",
-                  left: "10%",
-                  width: "80%",
-                  height: "3px",
-                  background: "#3498db",
-                  transform: "scaleX(1)",
-                  transformOrigin: "right",
-                  transition: "transform 0.5s",
-                },
-                "&.Mui-selected:hover": { backgroundColor: "unset" },
-              }}
-              onClick={() => navigate("/books")}
-              value="books"
-            >
+            </StyledToggleButton>
+            <StyledToggleButton onClick={() => navigate("/books")} value="books">
               Books
-            </ToggleButton>
+            </StyledToggleButton>
           </ToggleButtonGroup>
 
           <Search onSubmit={(e) => onSubmit(e)} component={"form"}>
@@ -162,9 +90,9 @@ const Navbar = ({
             </StyledSearchButton>
           </Search>
 
-          <CartBtn onClick={onClickCart} sx={{ backgroundColor: "transparent" }}>
+          {/* <CartBtn onClick={onClickCart} sx={{ backgroundColor: "transparent" }}>
             <ShoppingCartIcon color="info" />
-          </CartBtn>
+          </CartBtn> */}
         </Toolbar>
       </Container>
     </AppBar>
@@ -216,13 +144,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     width: "100%",
     padding: "0 8px",
-    height: "100%",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px",
+      padding: "0 4px",
+    },
   },
 }));
 
 const StyledSearchButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
   padding: "4px 8px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "4px 4px",
+  },
   backgroundColor: theme.palette.mode === "dark" ? "white" : "#0288d1",
   "& svg": {
     fill: theme.palette.mode === "dark" ? "black" : "white",
@@ -230,6 +164,47 @@ const StyledSearchButton = styled(ButtonBase)(({ theme }) => ({
   "&:hover svg": {
     fill: theme.palette.mode === "dark" ? "white" : "black",
   },
+}));
+
+const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
+  border: "none",
+  position: "relative",
+  transition: "0.5s",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "10px",
+    padding: "7px 2px",
+  },
+  "&::after": {
+    position: "absolute",
+    content: "''",
+    bottom: "7px",
+    left: "10%",
+    width: "80%",
+    height: "3px",
+    background: "#3498db",
+    transform: "scaleX(0)",
+    transformOrigin: "right",
+    transition: "transform 0.5s",
+  },
+  "&:hover::after": {
+    transform: "scaleX(1)",
+    transformOrigin: "left",
+  },
+  "&:hover": { backgroundColor: "unset" },
+  "&.Mui-selected": { backgroundColor: "unset" },
+  "&.Mui-selected::after": {
+    position: "absolute",
+    content: "''",
+    bottom: "7px",
+    left: "10%",
+    width: "80%",
+    height: "3px",
+    background: "#3498db",
+    transform: "scaleX(1)",
+    transformOrigin: "right",
+    transition: "transform 0.5s",
+  },
+  "&.Mui-selected:hover": { backgroundColor: "unset" },
 }));
 
 export default Navbar;

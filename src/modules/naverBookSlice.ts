@@ -36,11 +36,10 @@ const naverBookSlice = createSlice({
   reducers: {
     changeQuery(state, action) {
       console.log(action.payload);
-      state.query = action.payload;
       state.books = [];
+      state.query = action.payload;
     },
     changeStart(state, action) {
-      console.log(action.payload);
       state.start = action.payload;
     },
     setLastPage(state, action) {
@@ -55,7 +54,7 @@ const naverBookSlice = createSlice({
     builder.addCase(getNaverBook.fulfilled, (state, actions: PayloadAction<FulfilledPayload>) => {
       console.log("성공");
       let result = actions.payload;
-      console.log(result);
+      // console.log(result);
       state.loading = false;
       const newBooks = result.items.filter((item) => !state.books.some((book) => book.isbn === item.isbn));
       state.books = [...state.books, ...newBooks];

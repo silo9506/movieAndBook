@@ -5,12 +5,12 @@ import { naverBookSliceAction } from "modules/naverBookSlice";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 export default function BookPage() {
-  // const [isLastPage, setIsLastPage] = useState<boolean>(false);
   const [books, loading, error, maxPage, start, isLastPage] = useNaverBook();
-  const observer = useRef<IntersectionObserver>();
+  const [display, setDisplay] = useState(40);
   const dispatch = useDispatch();
   const { changeStart } = naverBookSliceAction;
   const { setLastPage } = naverBookSliceAction;
+  const observer = useRef<IntersectionObserver>();
   const lastBook = useCallback(
     (node: any) => {
       if (loading) return;
@@ -19,11 +19,12 @@ export default function BookPage() {
         if (entris[0].isIntersecting && !isLastPage) {
           console.log("무한스크롤 실행");
           console.log(start);
-          if (maxPage - 40 < start) {
+          console.log(maxPage);
+          if (maxPage - display < start) {
             // setIsLastPage(true);
             dispatch(setLastPage(true));
           } else {
-            dispatch(changeStart(start + 40));
+            dispatch(changeStart(start + display));
           }
         }
       });

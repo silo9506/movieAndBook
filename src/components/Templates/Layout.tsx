@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import Cart from "components/molecules/Cart";
 import Navbar from "components/molecules/Navbar";
 import { cartSliceAction } from "modules/cartSlice";
-import { naverBookSliceAction } from "modules/naverBookSlice";
+import naverBookSlice, { naverBookSliceAction } from "modules/naverBookSlice";
 import { RootState } from "modules/store";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useParams } from "react-router-dom";
@@ -12,12 +12,14 @@ import { tmdbMovieSliceAction } from "modules/tmdbSlice";
 
 export default function Layout() {
   const { params } = useParams();
-  console.log(params);
+  const dispatch = useDispatch();
   const { isOpen } = useSelector((state: RootState) => state.cartSlice);
   const { cartOpen, cartClose } = cartSliceAction;
+
   const { changeQuery: changeBQuery, changeStart: changeBStart, setLastPage } = naverBookSliceAction;
   const { changeQuery: changeMQuery, changePage: changeMPage } = tmdbMovieSliceAction;
-  const dispatch = useDispatch();
+  const { query: bookQuery } = useSelector((state: RootState) => state.naverBookSlice);
+  const { query: movieQuery } = useSelector((state: RootState) => state.tmdbSlice);
 
   const bookQueryChange = (newQuery: string) => {
     dispatch(changeBQuery(newQuery));
@@ -42,6 +44,8 @@ export default function Layout() {
         bookQueryChange={bookQueryChange}
         params={params}
         cartOpen={cartOpen}
+        bookQuery={bookQuery}
+        movieQuery={movieQuery}
       />
       <Cart isOpen={isOpen} cartOpen={cartOpen} cartClose={cartClose} />
       <Outlet />
