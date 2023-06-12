@@ -25,7 +25,7 @@ const axiosInstance = axios.create({
     "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_CLIENT_SECRET,
   },
   method: "get",
-  baseURL: "https://silo9506-proxy.herokuapp.com/https://openapi.naver.com/v1/search",
+  baseURL: "https://silo9506.herokuapp.com/https://openapi.naver.com/v1/search",
 });
 
 export const getNaverBook = createAsyncThunk<
