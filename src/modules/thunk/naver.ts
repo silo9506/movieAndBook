@@ -1,4 +1,9 @@
-import axios, { AxiosRequestConfig, AxiosResponse, CancelTokenSource, CancelToken } from "axios";
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  CancelTokenSource,
+  CancelToken,
+} from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 interface BooksData {
@@ -25,7 +30,7 @@ const axiosInstance = axios.create({
     "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_CLIENT_SECRET,
   },
   method: "get",
-  baseURL: "https://silo9506-proxy.herokuapp.com/https://openapi.naver.com/v1/search",
+  baseURL: "https://silo9506.herokuapp.com/https://openapi.naver.com/v1/search",
 });
 
 export const getNaverBook = createAsyncThunk<
@@ -34,26 +39,29 @@ export const getNaverBook = createAsyncThunk<
   {
     rejectValue: MyKnownError;
   }
->("naver/getNaverBook", async ({ query, start, cancelToken }, { rejectWithValue }) => {
-  try {
-    const config: AxiosRequestConfig = {
-      params: {
-        query,
-        start,
-        display: 40,
-      },
-      url: "/book.json",
-      cancelToken,
-    };
+>(
+  "naver/getNaverBook",
+  async ({ query, start, cancelToken }, { rejectWithValue }) => {
+    try {
+      const config: AxiosRequestConfig = {
+        params: {
+          query,
+          start,
+          display: 40,
+        },
+        url: "/book.json",
+        cancelToken,
+      };
 
-    const response: AxiosResponse<BooksData> = await axiosInstance(config);
+      const response: AxiosResponse<BooksData> = await axiosInstance(config);
 
-    return response.data;
-  } catch (err: unknown | any) {
-    if (axios.isCancel(err)) {
-      console.log("요청이 취소되었습니다.", err.response);
+      return response.data;
+    } catch (err: unknown | any) {
+      if (axios.isCancel(err)) {
+        console.log("요청이 취소되었습니다.", err.response);
+      }
+
+      return rejectWithValue({ errorMessage: err.response?.data });
     }
-
-    return rejectWithValue({ errorMessage: err.response?.data });
   }
-});
+);
