@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/movieAndBook/static/js/main.eb9b7134.js",
+    "main.js": "/movieAndBook/static/js/main.5aee14aa.js",
     "static/media/MSample07.jpg": "/movieAndBook/static/media/MSample07.25ac454a3cd528e6b17e.jpg",
     "static/media/MSample06.jpg": "/movieAndBook/static/media/MSample06.3ce74d6ac77d23d29655.jpg",
     "static/media/BSample02.jpg": "/movieAndBook/static/media/BSample02.fca736421151e70ac21c.jpg",
@@ -25,9 +25,9 @@
     "static/media/BSample09.jpg": "/movieAndBook/static/media/BSample09.72eb8e187832515b53f0.jpg",
     "static/media/BSample07.jpg": "/movieAndBook/static/media/BSample07.2e4b032e65365380894e.jpg",
     "index.html": "/movieAndBook/index.html",
-    "main.eb9b7134.js.map": "/movieAndBook/static/js/main.eb9b7134.js.map"
+    "main.5aee14aa.js.map": "/movieAndBook/static/js/main.5aee14aa.js.map"
   },
   "entrypoints": [
-    "static/js/main.eb9b7134.js"
+    "static/js/main.5aee14aa.js"
   ]
 }
